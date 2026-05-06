@@ -20,8 +20,8 @@ export default function MembershipForm() {
         const params = new URLSearchParams(hash.split("?")[1]);
         const tier = params.get("tier");
         const amount = params.get("amount");
-        if (tier) setSelectedTier(decodeURIComponent(tier));
-        if (amount) setSelectedAmount(decodeURIComponent(amount));
+        if (tier) setSelectedTier(tier);
+        if (amount) setSelectedAmount(amount);
       }
     }
 
@@ -115,7 +115,16 @@ export default function MembershipForm() {
         <select
           name="preferred_tier"
           value={selectedTier || ""}
-          onChange={(e) => setSelectedTier(e.target.value)}
+          onChange={(e) => {
+            const tier = e.target.value;
+            setSelectedTier(tier);
+            const amountMap: Record<string, string> = {
+              Neophyte: "$5,000/year",
+              Illuminatus: "$25,000/year",
+              Master: "$250,000/year",
+            };
+            setSelectedAmount(amountMap[tier] || "");
+          }}
           className="w-full bg-dark-surface border border-dark-border rounded-sm px-4 py-3 text-neutral-200 focus:outline-none focus:border-gold-500/50 focus:ring-1 focus:ring-gold-500/20"
           required
         >
