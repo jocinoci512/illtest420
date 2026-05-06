@@ -76,6 +76,7 @@ export interface MembershipApplication {
   phone: string
   country: string
   occupation: string
+  preferred_tier: string
   message: string
   status: 'pending' | 'reviewed' | 'accepted' | 'declined'
   created_at: string

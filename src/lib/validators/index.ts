@@ -13,6 +13,7 @@ export const applicationSchema = z.object({
   phone: z.string().min(5, "Phone number is required"),
   country: z.string().min(2, "Country is required"),
   occupation: z.string().min(2, "Occupation is required"),
+  preferred_tier: z.string().min(1, "Please select a membership tier"),
   message: z.string().min(20, "Please provide a more detailed message"),
 });
 

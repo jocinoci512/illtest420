@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 const tiers = [
   {
     name: "Neophyte",
+    amount: "$5,000/year",
     description: "The beginning of your journey.",
     features: [
       "Introductory knowledge materials",
@@ -25,6 +26,7 @@ const tiers = [
   },
   {
     name: "Illuminatus",
+    amount: "$25,000/year",
     description: "For those who have demonstrated commitment and growth.",
     features: [
       "All Neophyte privileges",
@@ -37,6 +39,7 @@ const tiers = [
   },
   {
     name: "Master",
+    amount: "$250,000/year",
     description: "The highest level of initiation.",
     features: [
       "All Illuminatus privileges",
@@ -106,7 +109,8 @@ export default function JoinPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {tiers.map((tier, i) => (
               <Card key={tier.name} className={`p-8 ${i === 1 ? 'border-gold-500/30 gold-glow' : ''}`}>
-                <h3 className="font-heading text-2xl text-white mb-2">{tier.name}</h3>
+                <h3 className="font-heading text-2xl text-white mb-1">{tier.name}</h3>
+                <p className="text-gold-500 font-heading text-lg mb-2">{tier.amount}</p>
                 <p className="text-neutral-400 text-sm mb-6">{tier.description}</p>
                 <ul className="space-y-3 mb-8">
                   {tier.features.map((f) => (
@@ -117,10 +121,10 @@ export default function JoinPage() {
                   ))}
                 </ul>
                 <a
-                  href="#application"
-                  className="block text-center px-4 py-2.5 border border-gold-500/30 text-gold-500 text-sm rounded-sm hover:bg-gold-500/10 transition-colors"
+                  href={`#application?tier=${encodeURIComponent(tier.name)}&amount=${encodeURIComponent(tier.amount)}`}
+                  className="block text-center px-4 py-2.5 bg-gold-500 text-dark-bg text-sm font-medium rounded-sm hover:bg-gold-400 transition-colors tracking-wide"
                 >
-                  Apply for Consideration
+                  BEGIN INITIATION
                 </a>
               </Card>
             ))}

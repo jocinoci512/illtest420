@@ -66,6 +66,9 @@ export default async function AdminSubmissionsPage() {
                       <Badge variant={a.status === "pending" ? "warning" : a.status === "accepted" ? "success" : "default"}>
                         {a.status}
                       </Badge>
+                      {a.preferred_tier && (
+                        <Badge variant="gold">{a.preferred_tier}</Badge>
+                      )}
                     </div>
                     <p className="text-sm text-neutral-500">
                       {a.email} &bull; {a.country} &bull; {a.occupation} &bull; {new Date(a.created_at).toLocaleDateString()}

@@ -88,6 +88,7 @@ CREATE TABLE membership_applications (
   phone VARCHAR(100) DEFAULT '',
   country VARCHAR(255) DEFAULT '',
   occupation VARCHAR(255) DEFAULT '',
+  preferred_tier VARCHAR(255) DEFAULT '',
   message TEXT DEFAULT '',
   status VARCHAR(20) DEFAULT 'pending' CHECK (status IN ('pending', 'reviewed', 'accepted', 'declined')),
   created_at TIMESTAMPTZ DEFAULT NOW()

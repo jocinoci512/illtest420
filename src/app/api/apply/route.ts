@@ -28,6 +28,7 @@ export async function POST(request: NextRequest) {
       country: result.data.country,
       occupation: result.data.occupation,
       message: result.data.message,
+      preferred_tier: result.data.preferred_tier,
     });
 
     if (error) {
