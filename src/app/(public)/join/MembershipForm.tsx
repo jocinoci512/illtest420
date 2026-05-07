@@ -13,21 +13,15 @@ export default function MembershipForm() {
   const [selectedAmount, setSelectedAmount] = useState("");
 
   useEffect(() => {
-    // Read tier from URL hash (e.g. #application?tier=Neophyte&amount=$5,000/year)
-    function parseTierFromHash() {
-      const hash = window.location.hash;
-      if (hash.includes("?")) {
-        const params = new URLSearchParams(hash.split("?")[1]);
-        const tier = params.get("tier");
-        const amount = params.get("amount");
-        if (tier) setSelectedTier(tier);
-        if (amount) setSelectedAmount(amount);
-      }
+    // Listen for tier selection from the BEGIN INITIATION buttons
+    function handleTierSelected(e: Event) {
+      const detail = (e as CustomEvent).detail;
+      if (detail?.tier) setSelectedTier(detail.tier);
+      if (detail?.amount) setSelectedAmount(detail.amount);
     }
 
-    parseTierFromHash();
-    window.addEventListener("hashchange", parseTierFromHash);
-    return () => window.removeEventListener("hashchange", parseTierFromHash);
+    window.addEventListener("tier-selected", handleTierSelected);
+    return () => window.removeEventListener("tier-selected", handleTierSelected);
   }, []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
